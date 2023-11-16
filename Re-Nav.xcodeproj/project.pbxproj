@@ -14,6 +14,7 @@
 		2600D11F2B065A7100B52CF4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D11E2B065A7100B52CF4 /* MapView.swift */; };
 		2600D1212B065A8400B52CF4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D1202B065A8400B52CF4 /* SettingView.swift */; };
 		2600D1232B065A9000B52CF4 /* PinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D1222B065A9000B52CF4 /* PinListView.swift */; };
+		2600D1262B0661CF00B52CF4 /* KakaoMapsSDK_SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		2600D11E2B065A7100B52CF4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		2600D1202B065A8400B52CF4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		2600D1222B065A9000B52CF4 /* PinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinListView.swift; sourceTree = "<group>"; };
+		2600D1272B0679F900B52CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2600D1262B0661CF00B52CF4 /* KakaoMapsSDK_SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +60,7 @@
 		2600D10F2B06533B00B52CF4 /* Re-Nav */ = {
 			isa = PBXGroup;
 			children = (
+				2600D1272B0679F900B52CF4 /* Info.plist */,
 				2600D1102B06533B00B52CF4 /* Re_NavApp.swift */,
 				2600D1122B06533C00B52CF4 /* ContentView.swift */,
 				2600D11E2B065A7100B52CF4 /* MapView.swift */,
@@ -92,6 +96,9 @@
 			dependencies = (
 			);
 			name = "Re-Nav";
+			packageProductDependencies = (
+				2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */,
+			);
 			productName = "Re-Nav";
 			productReference = 2600D10D2B06533B00B52CF4 /* Re-Nav.app */;
 			productType = "com.apple.product-type.application";
@@ -120,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 2600D1042B06533B00B52CF4;
+			packageReferences = (
+				2600D1242B0661CF00B52CF4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
+			);
 			productRefGroup = 2600D10E2B06533B00B52CF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -287,6 +297,7 @@
 				DEVELOPMENT_TEAM = F2SSSA5NRF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Re-Nav/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -316,6 +327,7 @@
 				DEVELOPMENT_TEAM = F2SSSA5NRF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Re-Nav/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -356,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2600D1242B0661CF00B52CF4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2600D1242B0661CF00B52CF4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = KakaoMapsSDK_SPM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2600D1052B06533B00B52CF4 /* Project object */;
 }
