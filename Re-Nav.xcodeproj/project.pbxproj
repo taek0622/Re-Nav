@@ -14,6 +14,7 @@
 		2600D11F2B065A7100B52CF4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D11E2B065A7100B52CF4 /* MapView.swift */; };
 		2600D1212B065A8400B52CF4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D1202B065A8400B52CF4 /* SettingView.swift */; };
 		2600D1232B065A9000B52CF4 /* PinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D1222B065A9000B52CF4 /* PinListView.swift */; };
+		2600D1262B0661CF00B52CF4 /* KakaoMapsSDK_SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2600D1262B0661CF00B52CF4 /* KakaoMapsSDK_SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +94,9 @@
 			dependencies = (
 			);
 			name = "Re-Nav";
+			packageProductDependencies = (
+				2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */,
+			);
 			productName = "Re-Nav";
 			productReference = 2600D10D2B06533B00B52CF4 /* Re-Nav.app */;
 			productType = "com.apple.product-type.application";
@@ -120,6 +125,9 @@
 				Base,
 			);
 			mainGroup = 2600D1042B06533B00B52CF4;
+			packageReferences = (
+				2600D1242B0661CF00B52CF4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
+			);
 			productRefGroup = 2600D10E2B06533B00B52CF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -356,6 +364,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2600D1242B0661CF00B52CF4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2600D1242B0661CF00B52CF4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = KakaoMapsSDK_SPM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2600D1052B06533B00B52CF4 /* Project object */;
 }

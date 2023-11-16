@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import KakaoMapsSDK
+
 struct MapView: View {
     var body: some View {
         Text("MapView")
