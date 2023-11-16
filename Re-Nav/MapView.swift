@@ -11,16 +11,23 @@ import KakaoMapsSDK
 
 struct MapView: View {
     @State private var draw: Bool = false
+    @State private var searchText: String = ""
 
     var body: some View {
-        KakaoMapView(draw: $draw)
-            .onAppear(perform: {
-                self.draw = true
-            })
-            .onDisappear(perform: {
-                self.draw = false
-            })
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        NavigationStack {
+            ZStack {
+                KakaoMapView(draw: $draw)
+                    .onAppear(perform: {
+                        self.draw = true
+                    })
+                    .onDisappear(perform: {
+                        self.draw = false
+                    })
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .navigationTitle("Nav")
+            .searchable(text: $searchText)
+        }
     }
 }
 
