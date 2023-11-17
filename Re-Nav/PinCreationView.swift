@@ -19,6 +19,7 @@ struct PinCreationView: View {
                 ScrollView {
                     HStack {
                         Text("테마")
+                            .fontWeight(.bold)
                         Spacer()
                         Button(action: {}, label: {
                             Text("음식")
@@ -32,6 +33,7 @@ struct PinCreationView: View {
 
                     HStack {
                         Text("상호")
+                            .fontWeight(.bold)
                             .padding(.trailing)
 
                         VStack {
@@ -45,6 +47,7 @@ struct PinCreationView: View {
 
                     HStack {
                         Text("주소")
+                            .fontWeight(.bold)
                             .padding(.trailing)
 
                         VStack {
@@ -58,6 +61,7 @@ struct PinCreationView: View {
 
                     HStack {
                         Text("사진")
+                            .fontWeight(.bold)
                         Spacer()
                     }
                     .padding(.top, 8)
@@ -81,6 +85,7 @@ struct PinCreationView: View {
 
                     HStack {
                         Text("설명")
+                            .fontWeight(.bold)
                         Spacer()
                     }
                     .padding(.top, 8)
@@ -92,6 +97,7 @@ struct PinCreationView: View {
 
                     HStack {
                         Text("평점")
+                            .fontWeight(.bold)
                         Spacer()
                     }
                     .padding(.top, 8)
