@@ -11,6 +11,7 @@ struct PinCreationView: View {
     @State private var name = ""
     @State private var address = ""
     @State private var detail = ""
+    @State private var starRate = 1
 
     var body: some View {
         NavigationStack {
@@ -96,7 +97,7 @@ struct PinCreationView: View {
                     .padding(.top, 8)
 
                     HStack {
-                        // StarShape Rating
+                        RatingView(rate: $starRate)
                     }
                     .padding(.bottom, 8)
                 }
@@ -115,6 +116,38 @@ struct PinCreationView: View {
             .navigationBarTitleDisplayMode(.inline)
             .padding(16)
         }
+    }
+}
+
+struct RatingView: View {
+    @Binding var rate: Int
+    var maxRate = 5
+    var inActiveSymbol: Image?
+    var activeSymbol = Image(systemName: "star.fill")
+    var inActiveColor = Color.gray
+    var activeColor = Color.yellow
+    var size = (UIScreen.main.bounds.width-70) / 5
+
+    var body: some View {
+        HStack {
+            ForEach(1...maxRate, id: \.self) { idx in
+                symbol(for: idx)
+                    .resizable()
+                    .frame(width: size, height: size)
+                    .foregroundStyle(idx > rate ? inActiveColor : activeColor)
+                    .onTapGesture {
+                        rate = idx
+                    }
+            }
+        }
+    }
+
+    private func symbol(for number: Int) -> Image {
+        if number > rate {
+            return inActiveSymbol ?? activeSymbol
+        }
+
+        return activeSymbol
     }
 }
 
