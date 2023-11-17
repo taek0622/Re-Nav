@@ -11,6 +11,15 @@ struct PinCreationView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Button(action: {}, label: {
+                    Text("확인")
+                        .foregroundStyle(.white)
+                        .background {
+                            RoundedRectangle(cornerRadius: 16)
+                                .frame(width: UIScreen.main.bounds.width-32, height: 50)
+                                .foregroundStyle(.red)
+                        }
+                })
             }
             .navigationTitle("핀 추가")
             .navigationBarTitleDisplayMode(.inline)
