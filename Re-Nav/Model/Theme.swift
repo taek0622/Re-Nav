@@ -12,9 +12,11 @@ import SwiftData
 final class Theme {
     @Attribute(.unique) var name: String
     @Relationship(deleteRule: .cascade) var pins: [Pin]
+    var createAt: Date
 
-    init(name: String, pins: [Pin]) {
+    init(name: String, pins: [Pin], createAt: Date) {
         self.name = name
         self.pins = pins
+        self.createAt = createAt
     }
 }
