@@ -5,13 +5,20 @@
 //  Created by 김민택 on 11/17/23.
 //
 
+import SwiftData
 import SwiftUI
 
 struct PinCreationView: View {
+    @Environment(\.modelContext) private var context
+    @Query(sort: [SortDescriptor<Theme>(\Theme.createAt)], animation: .default) var allThemes: [Theme]
+
+    @State private var choosenTheme = "선택"
+    @State private var newTheme = ""
     @State private var name = ""
     @State private var address = ""
     @State private var detail = ""
     @State private var starRate = 1
+    @State private var isAddNewTheme = false
     @Binding var longitude: Double
     @Binding var latitude: Double
 
@@ -23,9 +30,12 @@ struct PinCreationView: View {
                         Text("테마")
                             .fontWeight(.bold)
                         Spacer()
-                        Button(action: {}, label: {
-                            Text("음식")
-                        })
+                        Menu(choosenTheme) {
+                            ForEach(allThemes) { theme in
+                                Button(theme.name, action: { choosenTheme = theme.name })
+                            }
+                            Button("+ 새로운 테마 추가", action: { isAddNewTheme = true })
+                        }
                         .buttonStyle(.borderedProminent)
                         .tint(.gray)
                         .buttonBorderShape(.roundedRectangle(radius: 16))
@@ -124,6 +134,17 @@ struct PinCreationView: View {
             .navigationBarTitleDisplayMode(.inline)
             .padding(16)
         }
+        .alert("새로운 테마 추가하기", isPresented: $isAddNewTheme, actions: {
+            TextField("추가할 테마 이름을 입력해주세요", text: $newTheme)
+
+            Button {
+                let theme = Theme(name: newTheme, pins: [], createAt: Date.now)
+                context.insert(theme)
+            } label: {
+                Text("확인")
+            }
+            Button("취소", role: .cancel, action: {})
+        })
     }
 }
 
