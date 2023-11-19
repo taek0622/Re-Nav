@@ -155,6 +155,7 @@ struct KakaoMapView: UIViewRepresentable {
             if let poi = layer?.getPoi(poiID: param.poiID) {
                 let position = poi.position.wgsCoord
                 print("POI Tapped: \(position.longitude), \(position.latitude)")
+                NotificationCenter.default.post(name: NSNotification.Name("PoiTapNotification"), object: nil)
             }
         }
     }

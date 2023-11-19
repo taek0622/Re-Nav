@@ -11,7 +11,9 @@ import KakaoMapsSDK
 
 struct MapView: View {
     @State private var draw: Bool = false
+    @State private var isPinClicked: Bool = false
     @State private var searchText: String = ""
+    let poiTapPub = NotificationCenter.default.publisher(for: NSNotification.Name("PoiTapNotification"))
 
     var body: some View {
         NavigationStack {
@@ -28,6 +30,12 @@ struct MapView: View {
             .navigationTitle("Nav")
             .searchable(text: $searchText)
         }
+        .sheet(isPresented: $isPinClicked, content: {
+            PinCreationView()
+        })
+        .onReceive(poiTapPub, perform: { _ in
+            isPinClicked = true
+        })
     }
 }
 
