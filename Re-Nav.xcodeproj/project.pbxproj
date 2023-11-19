@@ -19,6 +19,7 @@
 		267279A32B0A416E0069DE76 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A22B0A416E0069DE76 /* Pin.swift */; };
 		267279A52B0A41F50069DE76 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A42B0A41F50069DE76 /* Theme.swift */; };
 		267279A72B0A42A80069DE76 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A62B0A42A80069DE76 /* Address.swift */; };
+		267279AC2B0A79C10069DE76 /* KakaoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279AB2B0A79C10069DE76 /* KakaoMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		267279A22B0A416E0069DE76 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		267279A42B0A41F50069DE76 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		267279A62B0A42A80069DE76 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		267279AB2B0A79C10069DE76 /* KakaoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				2600D1102B06533B00B52CF4 /* Re_NavApp.swift */,
 				2600D1122B06533C00B52CF4 /* ContentView.swift */,
 				2600D11E2B065A7100B52CF4 /* MapView.swift */,
+				267279AB2B0A79C10069DE76 /* KakaoMapView.swift */,
 				2600D1282B06BA6900B52CF4 /* PinCreationView.swift */,
 				2600D1202B065A8400B52CF4 /* SettingView.swift */,
 				2600D1222B065A9000B52CF4 /* PinListView.swift */,
@@ -183,6 +186,7 @@
 				2600D1132B06533C00B52CF4 /* ContentView.swift in Sources */,
 				2600D1212B065A8400B52CF4 /* SettingView.swift in Sources */,
 				267279A52B0A41F50069DE76 /* Theme.swift in Sources */,
+				267279AC2B0A79C10069DE76 /* KakaoMapView.swift in Sources */,
 				2600D11F2B065A7100B52CF4 /* MapView.swift in Sources */,
 				2600D1112B06533B00B52CF4 /* Re_NavApp.swift in Sources */,
 			);
