@@ -93,20 +93,25 @@ struct KakaoMapView: UIViewRepresentable {
             let view = controller?.getView("mapview") as! KakaoMap
             let manager = view.getLabelManager()
 
-            let iconStyle = PoiIconStyle(symbol: UIImage(named: "Mark"), anchorPoint: CGPoint(x: 0.5, y: 1.0), badges: [])
+            let savedPinIcon = PoiIconStyle(symbol: UIImage(named: "SavedPin"), anchorPoint: CGPoint(x: 0.5, y: 1.0))
+            let unsavedPinIcon = PoiIconStyle(symbol: UIImage(named: "UnsavedPin"), anchorPoint: CGPoint(x: 0.5, y: 1.0))
 
-            let poiStyle = PoiStyle(styleID: "PerLevelStyle", styles: [
-                PerLevelPoiStyle(iconStyle: iconStyle, level: 5)
+            let savedPinStyle = PoiStyle(styleID: "SavedPinStyle", styles: [
+                PerLevelPoiStyle(iconStyle: savedPinIcon, level: 5)
+            ])
+            let unsavedPinStyle = PoiStyle(styleID: "UnsavedPinStyle", styles: [
+                PerLevelPoiStyle(iconStyle: unsavedPinIcon, level: 5)
             ])
 
-            manager.addPoiStyle(poiStyle)
+            manager.addPoiStyle(savedPinStyle)
+            manager.addPoiStyle(unsavedPinStyle)
         }
 
         func createPois() {
             let view = controller?.getView("mapview") as! KakaoMap
             let manager = view.getLabelManager()
             let layer = manager.getLabelLayer(layerID: "PoiLayer")
-            let poiOption = PoiOptions(styleID: "PerLevelStyle")
+            let poiOption = PoiOptions(styleID: "SavedPinStyle")
             poiOption.rank = 0
             poiOption.clickable = true
 
@@ -118,14 +123,14 @@ struct KakaoMapView: UIViewRepresentable {
             let mapView = param.view as! KakaoMap
             let position = mapView.getPosition(param.point)
 
-            print("Tapped: \(position.wgsCoord.longitude), \(position.wgsCoord.latitude)")
+            print("Map Tapped: \(position.wgsCoord.longitude), \(position.wgsCoord.latitude)")
         }
 
         func terrainTapped(_ param: TerrainInteractionEventParam) {
             let mapView: KakaoMap = controller?.getView("mapview") as! KakaoMap
             let manager = mapView.getLabelManager()
             let layer = manager.getLabelLayer(layerID: "PoiLayer")
-            let option = PoiOptions(styleID: "PerLevelStyle")
+            let option = PoiOptions(styleID: "UnsavedPinStyle")
             option.clickable = true
 
             let position = param.position.wgsCoord
