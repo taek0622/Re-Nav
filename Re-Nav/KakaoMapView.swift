@@ -144,5 +144,16 @@ struct KakaoMapView: UIViewRepresentable {
             let position = param.position.wgsCoord
             print("Terrain Long Tapped: \(position.longitude), \(position.latitude)")
         }
+
+        func poiTapped(_ param: PoisInteractionEventParam) {
+            let mapView: KakaoMap = controller?.getView("mapview") as! KakaoMap
+            let manager = mapView.getLabelManager()
+            let layer = manager.getLabelLayer(layerID: "PoiLayer")
+
+            if let poi = layer?.getPoi(poiID: param.poiID) {
+                let position = poi.position.wgsCoord
+                print("POI Tapped: \(position.longitude), \(position.latitude)")
+            }
+        }
     }
 }
