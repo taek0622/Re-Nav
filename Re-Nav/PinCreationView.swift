@@ -140,6 +140,7 @@ struct PinCreationView: View {
             Button {
                 let theme = Theme(name: newTheme, pins: [], createAt: Date.now)
                 context.insert(theme)
+                try? context.save()
             } label: {
                 Text("확인")
             }
