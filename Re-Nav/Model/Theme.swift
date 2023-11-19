@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 final class Theme {
-    var name: String
+    @Attribute(.unique) var name: String
     @Relationship(deleteRule: .cascade) var pins: [Pin]
 
     init(name: String, pins: [Pin]) {
