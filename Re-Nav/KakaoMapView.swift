@@ -87,8 +87,10 @@ struct KakaoMapView: UIViewRepresentable {
         func createLabelLayer() {
             let view = controller?.getView("mapview") as! KakaoMap
             let manager = view.getLabelManager()
-            let layerOption = LabelLayerOptions(layerID: "PoiLayer", competitionType: .none, competitionUnit: .symbolFirst, orderType: .rank, zOrder: 0)
-            let _ = manager.addLabelLayer(option: layerOption)
+            let savedPoiLayerOption = LabelLayerOptions(layerID: "SavedPoiLayer", competitionType: .none, competitionUnit: .symbolFirst, orderType: .rank, zOrder: 0)
+            let unsavedPoiLayerOption = LabelLayerOptions(layerID: "UnsavedPoiLayer", competitionType: .none, competitionUnit: .symbolFirst, orderType: .rank, zOrder: 1)
+            let _ = manager.addLabelLayer(option: savedPoiLayerOption)
+            let _ = manager.addLabelLayer(option: unsavedPoiLayerOption)
         }
 
         func createPoiStyle() {
@@ -112,12 +114,12 @@ struct KakaoMapView: UIViewRepresentable {
         func createPois() {
             let view = controller?.getView("mapview") as! KakaoMap
             let manager = view.getLabelManager()
-            let layer = manager.getLabelLayer(layerID: "PoiLayer")
+            let savedPoiLayer = manager.getLabelLayer(layerID: "SavedPoiLayer")
             let poiOption = PoiOptions(styleID: "SavedPinStyle")
             poiOption.rank = 0
             poiOption.clickable = true
 
-            let poi = layer?.addPoi(option: poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
+            let poi = savedPoiLayer?.addPoi(option: poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
             poi?.show()
         }
 
@@ -131,14 +133,14 @@ struct KakaoMapView: UIViewRepresentable {
         func terrainTapped(_ param: TerrainInteractionEventParam) {
             let mapView: KakaoMap = controller?.getView("mapview") as! KakaoMap
             let manager = mapView.getLabelManager()
-            let layer = manager.getLabelLayer(layerID: "PoiLayer")
+            let unsavedPoiLayer = manager.getLabelLayer(layerID: "UnsavedPoiLayer")
             let option = PoiOptions(styleID: "UnsavedPinStyle")
             option.clickable = true
 
             let position = param.position.wgsCoord
             print("Terrain Tapped: \(position.longitude), \(position.latitude)")
 
-            let poi = layer?.addPoi(option: option, at: MapPoint(longitude: position.longitude, latitude: position.latitude))
+            let poi = unsavedPoiLayer?.addPoi(option: option, at: MapPoint(longitude: position.longitude, latitude: position.latitude))
             poi?.show()
         }
 
@@ -150,12 +152,18 @@ struct KakaoMapView: UIViewRepresentable {
         func poiTapped(_ param: PoisInteractionEventParam) {
             let mapView: KakaoMap = controller?.getView("mapview") as! KakaoMap
             let manager = mapView.getLabelManager()
-            let layer = manager.getLabelLayer(layerID: "PoiLayer")
+            let savedPoiLayer = manager.getLabelLayer(layerID: "SavedPoiLayer")
+            let unsavedPoiLayer = manager.getLabelLayer(layerID: "UnsavedPoiLayer")
 
-            if let poi = layer?.getPoi(poiID: param.poiID) {
-                let position = poi.position.wgsCoord
+            if let savedPoi = savedPoiLayer?.getPoi(poiID: param.poiID) {
+                print("savedPoi")
+            }
+
+            if let unsavedPoi = unsavedPoiLayer?.getPoi(poiID: param.poiID) {
+                let position = unsavedPoi.position.wgsCoord
                 print("POI Tapped: \(position.longitude), \(position.latitude)")
                 NotificationCenter.default.post(name: NSNotification.Name("PoiTapNotification"), object: position)
+                
             }
         }
     }
