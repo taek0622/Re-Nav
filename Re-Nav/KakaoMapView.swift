@@ -43,6 +43,7 @@ struct KakaoMapView: UIViewRepresentable {
         var _mapTapEventHandler: DisposableEventHandler?
         var _terrainTapEventHandler: DisposableEventHandler?
         var _terrainLongTapEventHandler: DisposableEventHandler?
+        var _poiTapEventHandler: DisposableEventHandler?
 
         override init() {
             first = true
@@ -68,6 +69,7 @@ struct KakaoMapView: UIViewRepresentable {
                 _mapTapEventHandler = mapView.addMapTappedEventHandler(target: self, handler: KakaoMapCoordinator.mapDidTapped)
                 _terrainTapEventHandler = mapView.addTerrainTappedEventHandler(target: self, handler: KakaoMapCoordinator.terrainTapped)
                 _terrainLongTapEventHandler = mapView.addTerrainLongPressedEventHandler(target: self, handler: KakaoMapCoordinator.terrainLongTapped)
+                _poiTapEventHandler = mapView.addPoisTappedEventHandler(target: self, handler: KakaoMapCoordinator.poiTapped)
             }
         }
 
