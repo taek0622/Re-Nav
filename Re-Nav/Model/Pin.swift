@@ -13,7 +13,7 @@ final class Pin {
     var name: String
     @Relationship(deleteRule: .cascade) var address: Address
     @Relationship(deleteRule: .cascade) var roadAddress: RoadAddress
-    var theme: Theme
+    @Relationship(deleteRule: .nullify) var theme: Theme
     var detail: String
     var photos: [Data]
     var rate: Int
