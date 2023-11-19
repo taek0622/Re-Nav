@@ -163,7 +163,6 @@ struct KakaoMapView: UIViewRepresentable {
                 let position = unsavedPoi.position.wgsCoord
                 print("POI Tapped: \(position.longitude), \(position.latitude)")
                 NotificationCenter.default.post(name: NSNotification.Name("PoiTapNotification"), object: position)
-                
             }
         }
     }
