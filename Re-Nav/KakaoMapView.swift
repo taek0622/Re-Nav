@@ -93,11 +93,10 @@ struct KakaoMapView: UIViewRepresentable {
             let view = controller?.getView("mapview") as! KakaoMap
             let manager = view.getLabelManager()
 
-//            let noti1 = PoiBadge(badgeID: "badge1", image: UIImage(named: "Mark"), offset: CGPoint(x: 0.9, y: 0.1), zOrder: 0)
-            let iconStyle1 = PoiIconStyle(symbol: UIImage(named: "Mark"), anchorPoint: CGPoint(x: 0.5, y: 1.0), badges: [])
+            let iconStyle = PoiIconStyle(symbol: UIImage(named: "Mark"), anchorPoint: CGPoint(x: 0.5, y: 1.0), badges: [])
 
             let poiStyle = PoiStyle(styleID: "PerLevelStyle", styles: [
-                PerLevelPoiStyle(iconStyle: iconStyle1, level: 5)
+                PerLevelPoiStyle(iconStyle: iconStyle, level: 5)
             ])
 
             manager.addPoiStyle(poiStyle)
@@ -112,11 +111,7 @@ struct KakaoMapView: UIViewRepresentable {
             poiOption.clickable = true
 
             let poi = layer?.addPoi(option: poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
-//            let badge = PoiBadge(badgeID: "noti", image: UIImage(named: "Mark"), offset: CGPoint(x: 0, y: 0), zOrder: 1)
-//            poi?.addBadge(badge)
             poi?.show()
-//            poi?.showBadge(badgeID: "noti")
-//            print("call2")
         }
 
         func mapDidTapped(_ param: ViewInteractionEventParam) {
