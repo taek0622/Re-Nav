@@ -13,6 +13,7 @@ struct MapView: View {
     @State private var draw: Bool = false
     @State private var isPinClicked: Bool = false
     @State private var searchText: String = ""
+    @State private var position = GeoCoordinate(longitude: 127.108678, latitude: 37.402001)
     let poiTapPub = NotificationCenter.default.publisher(for: NSNotification.Name("PoiTapNotification"))
 
     var body: some View {
@@ -31,9 +32,10 @@ struct MapView: View {
             .searchable(text: $searchText)
         }
         .sheet(isPresented: $isPinClicked, content: {
-            PinCreationView()
+            PinCreationView(longitude: $position.longitude, latitude: $position.latitude)
         })
-        .onReceive(poiTapPub, perform: { _ in
+        .onReceive(poiTapPub, perform: { pub in
+            position = pub.object as! GeoCoordinate
             isPinClicked = true
         })
     }

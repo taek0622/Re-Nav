@@ -12,6 +12,8 @@ struct PinCreationView: View {
     @State private var address = ""
     @State private var detail = ""
     @State private var starRate = 1
+    @Binding var longitude: Double
+    @Binding var latitude: Double
 
     var body: some View {
         NavigationStack {
@@ -158,5 +160,5 @@ struct RatingView: View {
 }
 
 #Preview {
-    PinCreationView()
+    PinCreationView(longitude: .constant(127.108678), latitude: .constant(37.402001))
 }
