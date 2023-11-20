@@ -16,6 +16,7 @@
 		2600D1232B065A9000B52CF4 /* PinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D1222B065A9000B52CF4 /* PinListView.swift */; };
 		2600D1262B0661CF00B52CF4 /* KakaoMapsSDK_SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2600D1252B0661CF00B52CF4 /* KakaoMapsSDK_SPM */; };
 		2600D1292B06BA6900B52CF4 /* PinCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600D1282B06BA6900B52CF4 /* PinCreationView.swift */; };
+		2627C1D22B0ACD8600A5374D /* FetchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627C1D12B0ACD8600A5374D /* FetchDataModel.swift */; };
 		267279A32B0A416E0069DE76 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A22B0A416E0069DE76 /* Pin.swift */; };
 		267279A52B0A41F50069DE76 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A42B0A41F50069DE76 /* Theme.swift */; };
 		267279A72B0A42A80069DE76 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A62B0A42A80069DE76 /* Address.swift */; };
@@ -33,6 +34,7 @@
 		2600D1222B065A9000B52CF4 /* PinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinListView.swift; sourceTree = "<group>"; };
 		2600D1272B0679F900B52CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2600D1282B06BA6900B52CF4 /* PinCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCreationView.swift; sourceTree = "<group>"; };
+		2627C1D12B0ACD8600A5374D /* FetchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataModel.swift; sourceTree = "<group>"; };
 		267279A22B0A416E0069DE76 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		267279A42B0A41F50069DE76 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		267279A62B0A42A80069DE76 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				267279A22B0A416E0069DE76 /* Pin.swift */,
 				267279A42B0A41F50069DE76 /* Theme.swift */,
 				267279A62B0A42A80069DE76 /* Address.swift */,
+				2627C1D12B0ACD8600A5374D /* FetchDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2627C1D22B0ACD8600A5374D /* FetchDataModel.swift in Sources */,
 				267279A72B0A42A80069DE76 /* Address.swift in Sources */,
 				267279A32B0A416E0069DE76 /* Pin.swift in Sources */,
 				2600D1232B065A9000B52CF4 /* PinListView.swift in Sources */,
