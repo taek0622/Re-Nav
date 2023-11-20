@@ -5,6 +5,7 @@
 //  Created by 김민택 on 11/20/23.
 //
 
+import SwiftData
 import SwiftUI
 
 import KakaoMapsSDK
@@ -118,6 +119,16 @@ struct KakaoMapView: UIViewRepresentable {
             let poiOption = PoiOptions(styleID: "SavedPinStyle")
             poiOption.rank = 0
             poiOption.clickable = true
+
+            guard let container = try? ModelContainer(for: Pin.self) else { return }
+            let context = ModelContext(container)
+            let fetchDescriptor = FetchDescriptor<Pin>(sortBy: [SortDescriptor<Pin>(\Pin.createAt)])
+            guard let locations = try? context.fetch(fetchDescriptor) else { return }
+
+            for location in locations {
+                let poi = savedPoiLayer?.addPoi(option: poiOption, at: MapPoint(longitude: location.longitude, latitude: location.latitude))
+                poi?.show()
+            }
 
             let poi = savedPoiLayer?.addPoi(option: poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
             poi?.show()
