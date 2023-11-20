@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import PhotosUI
 
 struct PinCreationView: View {
     @Environment(\.modelContext) private var context
@@ -19,6 +20,8 @@ struct PinCreationView: View {
     @State private var roadAddress = ""
     @State private var address = ""
     @State private var detail = ""
+    @State private var selectedPhotos = [PhotosPickerItem]()
+    @State private var photos = [Data]()
     @State private var starRate = 1
     @State private var isAddNewTheme = false
     @Binding var longitude: Double
@@ -92,19 +95,32 @@ struct PinCreationView: View {
                         }
                         .padding(.top, 8)
 
-                        ScrollView(.horizontal) {
+                        ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                Button(action: {}, label: {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .frame(width: 100, height: 100)
-                                            .foregroundStyle(.gray)
-                                        Image(systemName: "plus.circle.fill")
-                                            .resizable()
-                                            .frame(width: 25, height: 25)
-                                            .foregroundStyle(.red)
+                                PhotosPicker(selection: $selectedPhotos, maxSelectionCount: 5, matching: .images) {
+                                    ForEach(photos, id: \.self) { photoData in
+                                        if let image = UIImage(data: photoData) {
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 100, height: 100)
+                                                .clipped()
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                        }
                                     }
-                                })
+
+                                    if photos.count < 5 {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .frame(width: 100, height: 100)
+                                                .foregroundStyle(.gray)
+                                            Image(systemName: "plus.circle.fill")
+                                                .resizable()
+                                                .frame(width: 25, height: 25)
+                                                .foregroundStyle(.red)
+                                        }
+                                    }
+                                }
                             }
                         }
                         .padding(.bottom, 8)
@@ -137,7 +153,7 @@ struct PinCreationView: View {
                 }
 
                 Button(action: {
-                    let pin = Pin(name: name, longitude: longitude, latitude: latitude, address: pinAddress, roadAddress: pinRoadAddress, theme: choosenTheme!, detail: detail, photos: [], rate: starRate, createAt: Date.now, updateAt: Date.now)
+                    let pin = Pin(name: name, longitude: longitude, latitude: latitude, address: pinAddress, roadAddress: pinRoadAddress, theme: choosenTheme!, detail: detail, photos: photos, rate: starRate, createAt: Date.now, updateAt: Date.now)
                     context.insert(pin)
                     try? context.save()
                     dismiss()
@@ -169,6 +185,16 @@ struct PinCreationView: View {
         })
         .onAppear {
             fetchAddressData(longitude, latitude)
+        }
+        .onChange(of: selectedPhotos) { _, newItems in
+            photos.removeAll()
+            for newItem in newItems {
+                Task {
+                    if let data = try? await newItem.loadTransferable(type: Data.self) {
+                        photos.append(data)
+                    }
+                }
+            }
         }
     }
 
