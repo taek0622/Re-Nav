@@ -23,6 +23,9 @@ struct PinCreationView: View {
     @Binding var longitude: Double
     @Binding var latitude: Double
 
+    @State private var pinAddress: Address?
+    @State private var pinRoadAddress: RoadAddress?
+
     var body: some View {
         NavigationStack {
             VStack {
