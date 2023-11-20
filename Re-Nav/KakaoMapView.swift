@@ -153,8 +153,15 @@ struct KakaoMapView: UIViewRepresentable {
             let position = param.position.wgsCoord
             print("Terrain Tapped: \(position.longitude), \(position.latitude)")
 
-            let poi = unsavedPoiLayer?.addPoi(option: option, at: MapPoint(longitude: position.longitude, latitude: position.latitude))
-            poi?.show()
+            guard let pois = unsavedPoiLayer?.getAllPois() else { return }
+
+            if pois.isEmpty {
+                let poi = unsavedPoiLayer?.addPoi(option: option, at: MapPoint(longitude: position.longitude, latitude: position.latitude))
+                poi?.show()
+                return
+            }
+
+            unsavedPoiLayer?.removePois(poiIDs: pois.map { $0.itemID })
         }
 
         func terrainLongTapped(_ param: TerrainInteractionEventParam) {
