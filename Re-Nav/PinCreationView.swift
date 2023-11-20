@@ -12,7 +12,7 @@ struct PinCreationView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: [SortDescriptor<Theme>(\Theme.createAt)], animation: .default) var allThemes: [Theme]
 
-    @State private var choosenTheme = "선택"
+    @State private var choosenTheme: Theme?
     @State private var newTheme = ""
     @State private var name = ""
     @State private var address = ""
