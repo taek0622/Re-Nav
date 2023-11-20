@@ -183,7 +183,7 @@ struct PinCreationView: View {
 
         var request = URLRequest(url: requestURL)
         request.httpMethod = "GET"
-        request.addValue("KakaoAK fd0e866fea199261dd1e3902235b55fd", forHTTPHeaderField: "Authorization")
+        request.addValue(Bundle.main.object(forInfoDictionaryKey: "KAKAO_REST_API_KEY") as! String, forHTTPHeaderField: "Authorization")
 
         let defaultSession = URLSession(configuration: .default)
 
