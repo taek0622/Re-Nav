@@ -15,6 +15,7 @@ struct PinCreationView: View {
     @State private var choosenTheme: Theme?
     @State private var newTheme = ""
     @State private var name = ""
+    @State private var roadAddress = ""
     @State private var address = ""
     @State private var detail = ""
     @State private var starRate = 1
