@@ -30,15 +30,21 @@ struct PinCreationView: View {
         NavigationStack {
             VStack {
                 ScrollView {
-                    HStack {
-                        Text("테마")
-                            .fontWeight(.bold)
-                        Spacer()
-                        Menu(choosenTheme) {
-                            ForEach(allThemes) { theme in
-                                Button(theme.name, action: { choosenTheme = theme.name })
+                    VStack {
+                        HStack {
+                            Text("테마")
+                                .fontWeight(.bold)
+                            Spacer()
+                            Menu(choosenTheme?.name ?? "선택") {
+                                ForEach(allThemes) { theme in
+                                    Button(theme.name, action: { choosenTheme = theme })
+                                }
+                                Button("+ 새로운 테마 추가", action: { isAddNewTheme = true })
                             }
-                            Button("+ 새로운 테마 추가", action: { isAddNewTheme = true })
+                            .buttonStyle(.borderedProminent)
+                            .tint(.gray)
+                            .buttonBorderShape(.roundedRectangle(radius: 16))
+                            .foregroundStyle(.black)
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(.gray)
