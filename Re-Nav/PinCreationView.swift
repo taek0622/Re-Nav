@@ -136,6 +136,9 @@ struct PinCreationView: View {
                 }
 
                 Button(action: {
+                    let pin = Pin(name: name, longitude: longitude, latitude: latitude, address: pinAddress, roadAddress: pinRoadAddress, theme: choosenTheme!, detail: detail, photos: [], rate: starRate, createAt: Date.now, updateAt: Date.now)
+                    context.insert(pin)
+                    try? context.save()
                 }, label: {
                     Text("확인")
                         .foregroundStyle(.white)
