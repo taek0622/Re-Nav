@@ -195,7 +195,3 @@ struct RatingView: View {
         return activeSymbol
     }
 }
-
-#Preview {
-    PinCreationView(longitude: .constant(127.108678), latitude: .constant(37.402001))
-}
