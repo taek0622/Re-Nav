@@ -125,10 +125,12 @@ struct KakaoMapView: UIViewRepresentable {
             let fetchDescriptor = FetchDescriptor<Pin>(sortBy: [SortDescriptor<Pin>(\Pin.createAt)])
             guard let locations = try? context.fetch(fetchDescriptor) else { return }
 
-            for location in locations {
-                let poi = savedPoiLayer?.addPoi(option: poiOption, at: MapPoint(longitude: location.longitude, latitude: location.latitude))
-                poi?.show()
+            let pois = savedPoiLayer?.addPois(option: poiOption, at: locations.map { MapPoint(longitude: $0.longitude, latitude: $0.latitude) })
+
+            for poi in pois ?? [] {
+                poi.show()
             }
+
 
             let poi = savedPoiLayer?.addPoi(option: poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
             poi?.show()
