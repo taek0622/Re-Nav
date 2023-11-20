@@ -13,8 +13,8 @@ final class Pin {
     var name: String
     var longitude: Double
     var latitude: Double
-    @Relationship(deleteRule: .cascade) var address: Address
-    @Relationship(deleteRule: .cascade) var roadAddress: RoadAddress
+    @Relationship(deleteRule: .cascade) var address: Address?
+    @Relationship(deleteRule: .cascade) var roadAddress: RoadAddress?
     @Relationship(deleteRule: .nullify) var theme: Theme
     var detail: String
     var photos: [Data]
@@ -22,7 +22,7 @@ final class Pin {
     var createAt: Date
     var updateAt: Date
 
-    init(name: String, longitude: Double, latitude: Double, address: Address, roadAddress: RoadAddress, theme: Theme, detail: String, photos: [Data], rate: Int, createAt: Date, updateAt: Date) {
+    init(name: String, longitude: Double, latitude: Double, address: Address? = nil, roadAddress: RoadAddress? = nil, theme: Theme, detail: String, photos: [Data], rate: Int, createAt: Date, updateAt: Date) {
         self.name = name
         self.longitude = longitude
         self.latitude = latitude
