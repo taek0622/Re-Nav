@@ -162,6 +162,54 @@ struct PinCreationView: View {
             }
             Button("취소", role: .cancel, action: {})
         })
+        .onAppear {
+            fetchAddressData(longitude, latitude)
+        }
+    }
+
+    private func fetchAddressData(_ longitude: Double, _ latitude: Double) {
+        guard var urlComponents = URLComponents(string: "https://dapi.kakao.com/v2/local/geo/coord2address.json") else { return }
+        urlComponents.queryItems = [
+            URLQueryItem(name: "x", value: String(longitude)),
+            URLQueryItem(name: "y", value: String(latitude))
+        ]
+
+        guard let requestURL = urlComponents.url else { return }
+
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "GET"
+        request.addValue("KakaoAK fd0e866fea199261dd1e3902235b55fd", forHTTPHeaderField: "Authorization")
+
+        let defaultSession = URLSession(configuration: .default)
+
+        defaultSession.dataTask(with: request) { data, _, error in
+            if let data  {
+                do {
+                    let decodedData = try JSONDecoder().decode(AddressFetchDataModel.self, from: data)
+
+                    if decodedData.meta.total_count == 0 {
+                        return
+                    }
+
+                    if let newAddress = decodedData.documents[0].address {
+                        pinAddress = Address(fullAddress: newAddress.address_name, depth1: newAddress.region_1depth_name, depth2: newAddress.region_2depth_name, depth3: newAddress.region_3depth_name, mainNo: newAddress.main_address_no, subNo: newAddress.sub_address_no)
+
+                        address = newAddress.address_name
+                    }
+
+                    if let newRoadAdress = decodedData.documents[0].road_address {
+                        pinRoadAddress = RoadAddress(fullAddress: newRoadAdress.address_name, depth1: newRoadAdress.region_1depth_name, depth2: newRoadAdress.region_2depth_name, depth3: newRoadAdress.region_3depth_name, road: newRoadAdress.road_name, mainNo: newRoadAdress.main_building_no, subNo: newRoadAdress.sub_building_no, buildingName: newRoadAdress.building_name, postalCode: newRoadAdress.zone_no)
+
+                        roadAddress = newRoadAdress.address_name
+                    }
+
+                } catch {
+                    print("Error decoding JSON: \(error.localizedDescription)")
+                }
+            } else if let error {
+                print("Error fetching data: \(error.localizedDescription)")
+            }
+        }.resume()
     }
 }
 
