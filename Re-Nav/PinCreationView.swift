@@ -46,88 +46,93 @@ struct PinCreationView: View {
                             .buttonBorderShape(.roundedRectangle(radius: 16))
                             .foregroundStyle(.black)
                         }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.gray)
-                        .buttonBorderShape(.roundedRectangle(radius: 16))
-                        .foregroundStyle(.black)
-                    }
-                    .padding(.vertical, 8)
+                        .padding(.vertical, 8)
 
-                    HStack {
-                        Text("상호")
-                            .fontWeight(.bold)
-                            .padding(.trailing)
-
-                        VStack {
-                            TextField("상호명을 입력하세요", text: $name)
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundStyle(.gray)
-                        }
-                    }
-                    .padding(.vertical, 8)
-
-                    HStack {
-                        Text("주소")
-                            .fontWeight(.bold)
-                            .padding(.trailing)
-
-                        VStack {
-                            TextField("주소를 입력하세요", text: $address)
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundStyle(.gray)
-                        }
-                    }
-                    .padding(.vertical, 8)
-
-                    HStack {
-                        Text("사진")
-                            .fontWeight(.bold)
-                        Spacer()
-                    }
-                    .padding(.top, 8)
-
-                    ScrollView(.horizontal) {
                         HStack {
-                            Button(action: {}, label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .frame(width: 100, height: 100)
-                                        .foregroundStyle(.gray)
-                                    Image(systemName: "plus.circle.fill")
-                                        .resizable()
-                                        .frame(width: 25, height: 25)
-                                        .foregroundStyle(.red)
-                                }
-                            })
+                            Text("상호")
+                                .fontWeight(.bold)
+                                .padding(.trailing)
+
+                            VStack {
+                                TextField("상호명을 입력하세요", text: $name)
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .foregroundStyle(.gray)
+                            }
                         }
-                    }
-                    .padding(.bottom, 8)
+                        .padding(.vertical, 8)
 
-                    HStack {
-                        Text("설명")
-                            .fontWeight(.bold)
-                        Spacer()
-                    }
-                    .padding(.top, 8)
+                        if roadAddress != "" {
+                            HStack {
+                                Text("도로명 주소")
+                                    .fontWeight(.bold)
+                                    .padding(.trailing)
+                                Spacer()
+                                Text(roadAddress)
+                            }
+                            .padding(.vertical, 8)
+                        }
 
-                    TextField("설명을 입력하세요", text: $detail, axis: .vertical)
-                        .textFieldStyle(.roundedBorder)
-                        .lineLimit(5, reservesSpace: true)
+                        if address != "" {
+                            HStack {
+                                Text("지번 주소")
+                                    .fontWeight(.bold)
+                                    .padding(.trailing)
+                                Spacer()
+                                Text(address)
+                            }
+                            .padding(.vertical, 8)
+                        }
+
+                        HStack {
+                            Text("사진")
+                                .fontWeight(.bold)
+                            Spacer()
+                        }
+                        .padding(.top, 8)
+
+                        ScrollView(.horizontal) {
+                            HStack {
+                                Button(action: {}, label: {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .frame(width: 100, height: 100)
+                                            .foregroundStyle(.gray)
+                                        Image(systemName: "plus.circle.fill")
+                                            .resizable()
+                                            .frame(width: 25, height: 25)
+                                            .foregroundStyle(.red)
+                                    }
+                                })
+                            }
+                        }
                         .padding(.bottom, 8)
 
-                    HStack {
-                        Text("평점")
-                            .fontWeight(.bold)
-                        Spacer()
-                    }
-                    .padding(.top, 8)
+                        HStack {
+                            Text("설명")
+                                .fontWeight(.bold)
+                            Spacer()
+                        }
+                        .padding(.top, 8)
 
-                    HStack {
-                        RatingView(rate: $starRate)
+                        TextField("설명을 입력하세요", text: $detail, axis: .vertical)
+                            .textFieldStyle(.roundedBorder)
+                            .lineLimit(5, reservesSpace: true)
+                            .padding(.bottom, 8)
+
+                        HStack {
+                            Text("평점")
+                                .fontWeight(.bold)
+                            Spacer()
+                        }
+                        .padding(.top, 8)
+
+                        HStack {
+                            RatingView(rate: $starRate)
+                        }
+                        .padding(.bottom, 16)
                     }
-                    .padding(.bottom, 8)
+                    .padding(.horizontal, 16)
                 }
 
                 Button(action: {}, label: {
