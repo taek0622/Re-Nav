@@ -8,16 +8,16 @@
 import Foundation
 
 final class AddressFetchDataModel: Codable {
-    let meta: MetaFetchData
-    let documents: [DocumentFetchData]
+    let meta: AddressMetaFetchData
+    let documents: [AddressDocumentFetchData]
 
-    init(meta: MetaFetchData, documents: [DocumentFetchData]) {
+    init(meta: AddressMetaFetchData, documents: [AddressDocumentFetchData]) {
         self.meta = meta
         self.documents = documents
     }
 }
 
-final class MetaFetchData: Codable {
+final class AddressMetaFetchData: Codable {
     let total_count: Int
 
     init(total_count: Int) {
@@ -25,7 +25,7 @@ final class MetaFetchData: Codable {
     }
 }
 
-final class DocumentFetchData: Codable {
+final class AddressDocumentFetchData: Codable {
     let road_address: RoadAddressFetchData?
     let address: AddressFetchData?
 
