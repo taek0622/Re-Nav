@@ -30,21 +30,7 @@ struct MapView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                 if !searchResult.isEmpty {
-                    List(searchResult, id: \.id) { result in
-                        Button {
-                            position = GeoCoordinate(longitude: Double(result.x)!, latitude: Double(result.y)!)
-                            NotificationCenter.default.post(name: NSNotification.Name("SelectAddressGesture"), object: position)
-                            searchText = ""
-                            searchResult = []
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Text(result.place_name)
-                                Text(result.address_name)
-                                    .font(.system(size: 14))
-                            }
-                            .foregroundStyle(.black)
-                        }
-                    }
+                    SearchedView(searchText: $searchText, position: $position, searchResult: $searchResult)
                 }
             }
             .navigationTitle("Nav")
@@ -88,6 +74,33 @@ struct MapView: View {
                 print("Error fetching data: \(error.localizedDescription)")
             }
         }.resume()
+    }
+}
+
+private struct SearchedView: View {
+    @Environment(\.dismissSearch) private var dismissSearch
+
+    @Binding var searchText: String
+    @Binding var position: GeoCoordinate
+    @Binding var searchResult: [SearchDocumentFetchData]
+
+    var body: some View {
+        List(searchResult, id: \.id) { result in
+            Button {
+                position = GeoCoordinate(longitude: Double(result.x)!, latitude: Double(result.y)!)
+                NotificationCenter.default.post(name: NSNotification.Name("SelectAddressGesture"), object: position)
+                searchText = ""
+                searchResult = []
+                dismissSearch()
+            } label: {
+                VStack(alignment: .leading) {
+                    Text(result.place_name)
+                    Text(result.address_name)
+                        .font(.system(size: 14))
+                }
+                .foregroundStyle(.black)
+            }
+        }
     }
 }
 
