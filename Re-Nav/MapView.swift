@@ -28,6 +28,23 @@ struct MapView: View {
                         self.draw = false
                     })
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+                if !searchResult.isEmpty {
+                    List(searchResult, id: \.id) { result in
+                        Button {
+                            position = GeoCoordinate(longitude: Double(result.x)!, latitude: Double(result.y)!)
+                            searchText = ""
+                            searchResult = []
+                        } label: {
+                            VStack(alignment: .leading) {
+                                Text(result.place_name)
+                                Text(result.address_name)
+                                    .font(.system(size: 14))
+                            }
+                            .foregroundStyle(.black)
+                        }
+                    }
+                }
             }
             .navigationTitle("Nav")
             .searchable(text: $searchText)
