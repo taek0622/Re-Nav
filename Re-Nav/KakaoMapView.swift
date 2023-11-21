@@ -59,6 +59,10 @@ struct KakaoMapView: UIViewRepresentable {
         func addViews() {
             let defaultPosition: MapPoint = MapPoint(longitude: 127.108678, latitude: 37.402001)
             let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition)
+            NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "SelectAddressGesture"), object: nil, queue: nil) {
+                let position = $0.object as! GeoCoordinate
+                self.moveCamera(position.longitude, position.latitude)
+            }
 
             if controller?.addView(mapviewInfo) == Result.OK {
                 let mapView = controller?.getView("mapview") as! KakaoMap
@@ -184,6 +188,11 @@ struct KakaoMapView: UIViewRepresentable {
                 print("POI Tapped: \(position.longitude), \(position.latitude)")
                 NotificationCenter.default.post(name: NSNotification.Name("PoiTapNotification"), object: position)
             }
+        }
+
+        func moveCamera(_ longitude: Double, _ latitude: Double) {
+            let mapView: KakaoMap = controller?.getView("mapview") as! KakaoMap
+            mapView.moveCamera(CameraUpdate.make(cameraPosition: CameraPosition(target: MapPoint(longitude: longitude, latitude: latitude), height: 300, rotation: 0, tilt: 0)))
         }
     }
 }
