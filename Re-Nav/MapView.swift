@@ -33,6 +33,7 @@ struct MapView: View {
                     List(searchResult, id: \.id) { result in
                         Button {
                             position = GeoCoordinate(longitude: Double(result.x)!, latitude: Double(result.y)!)
+                            NotificationCenter.default.post(name: NSNotification.Name("SelectAddressGesture"), object: position)
                             searchText = ""
                             searchResult = []
                         } label: {
