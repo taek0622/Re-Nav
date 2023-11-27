@@ -135,7 +135,6 @@ struct KakaoMapView: UIViewRepresentable {
                 poi.show()
             }
 
-
             let poi = savedPoiLayer?.addPoi(option: poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
             poi?.show()
         }

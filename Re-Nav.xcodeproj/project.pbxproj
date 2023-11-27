@@ -21,6 +21,7 @@
 		267279A52B0A41F50069DE76 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A42B0A41F50069DE76 /* Theme.swift */; };
 		267279A72B0A42A80069DE76 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279A62B0A42A80069DE76 /* Address.swift */; };
 		267279AC2B0A79C10069DE76 /* KakaoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267279AB2B0A79C10069DE76 /* KakaoMapView.swift */; };
+		26A1EC462B0DF61B008BB291 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1EC452B0DF61B008BB291 /* View+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		267279A42B0A41F50069DE76 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		267279A62B0A42A80069DE76 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		267279AB2B0A79C10069DE76 /* KakaoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMapView.swift; sourceTree = "<group>"; };
+		26A1EC452B0DF61B008BB291 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				2600D1282B06BA6900B52CF4 /* PinCreationView.swift */,
 				2600D1202B065A8400B52CF4 /* SettingView.swift */,
 				2600D1222B065A9000B52CF4 /* PinListView.swift */,
+				26A1EC452B0DF61B008BB291 /* View+.swift */,
 				267279A12B0A41600069DE76 /* Model */,
 				2600D1142B06533D00B52CF4 /* Assets.xcassets */,
 				2600D1162B06533D00B52CF4 /* Preview Content */,
@@ -186,6 +189,7 @@
 				267279A72B0A42A80069DE76 /* Address.swift in Sources */,
 				267279A32B0A416E0069DE76 /* Pin.swift in Sources */,
 				2600D1232B065A9000B52CF4 /* PinListView.swift in Sources */,
+				26A1EC462B0DF61B008BB291 /* View+.swift in Sources */,
 				2600D1292B06BA6900B52CF4 /* PinCreationView.swift in Sources */,
 				2600D1132B06533C00B52CF4 /* ContentView.swift in Sources */,
 				2600D1212B065A8400B52CF4 /* SettingView.swift in Sources */,
