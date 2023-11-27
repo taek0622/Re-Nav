@@ -9,7 +9,6 @@ import SwiftData
 import SwiftUI
 
 struct PinListView: View {
-//    @State private var isShowSheet = false
     @Environment(\.modelContext) private var modelContext
 
     @State private var fetchDescriptor = FetchDescriptor<Pin>(sortBy: [SortDescriptor<Pin>(\Pin.createAt)])
