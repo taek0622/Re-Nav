@@ -9,7 +9,22 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
-        Text("SettingView")
+        NavigationStack {
+            List {
+                Button("오픈 API") {
+                    
+                }
+                Button("버전 정보") {
+                    
+                }
+                Button("초기화") {
+                    
+                }
+            }
+            .foregroundStyle(.black)
+            .navigationTitle("설정")
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
